@@ -54,9 +54,9 @@
             var subTitlePart = (properties.ukiyoeSubTitle === '' || properties.ukiyoeSubTitle === '-') ? '' : ` (${properties.ukiyoeSubTitle})`;
             var content = `
 <div>
-<div class="tooltip-ukiyoe-point-title">${properties.ukiyoeTitle}${subTitlePart}</div>
-<div class="tooltip-ukiyoe-point-img"><img width="128" src="${properties.ukiyoeThmbUrl}"></div>
-<div class="tooltip-ukiyoe-point-attr">${properties.ukiyoeAttribution}</div>
+    <div class="tooltip-ukiyoe-point-title">${properties.ukiyoeTitle}${subTitlePart}</div>
+    <div class="tooltip-ukiyoe-point-img loading"><img width="128" src="${properties.ukiyoeThmbUrl}"></div>
+    <div class="tooltip-ukiyoe-point-attr">${properties.ukiyoeAttribution}</div>
 </div>
 `;
             return content;

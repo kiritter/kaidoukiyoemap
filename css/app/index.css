@@ -430,6 +430,11 @@ body {
   font-size: 11px;
 }
 
+div.loading {
+  min-height: 32px;
+  background: transparent url(../../images/loading_32px.png) center center no-repeat;
+}
+
 .message-area {
   position: absolute;
   top: 0;

@@ -69,7 +69,7 @@
             <th class="table-ukiyoe-title table-ukiyoe-nakasendo">${properties.ukiyoeTitle}${subTitlePart}</th>
         </tr>
         <tr>
-            <td><img src="${properties.ukiyoeLargeUrl}"></td>
+            <td><div class="loading"><img src="${properties.ukiyoeLargeUrl}"></div></td>
         </tr>
         <tr>
             <td class="table-ukiyoe-attr">${attrWithoutBr}</td>
