@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="『東海道五十三次』『木曽海道六十九次』(木曽街道/中山道)の浮世絵を、宿場の位置に表示する地図サイトです。地理院地図の年代別空中写真や陰影起伏図、日本版MapWarperの「五万分一地形圖」と併せて閲覧できます。">
+  <meta name="theme-color" content="#C4DFE6">
+  <meta name="thumbnail" content="https://kiritter.github.io/kaidoukiyoemap/thumbnails/thmb-256x256.png">
+  <meta property="og:title" content="街道浮世絵マップ">
+  <meta property="og:description" content="『東海道五十三次』『木曽海道六十九次』(木曽街道/中山道)の浮世絵を、宿場の位置に表示する地図サイトです。地理院地図の年代別空中写真や陰影起伏図、日本版MapWarperの「五万分一地形圖」と併せて閲覧できます。">
+  <meta property="og:url" content="https://kiritter.github.io/kaidoukiyoemap/">
+  <meta property="og:image" content="https://kiritter.github.io/kaidoukiyoemap/thumbnails/thmb-192x192.png">
+  <meta name="twitter:card" content="summary">
+  <title>街道浮世絵マップ</title>
+  <base href="/kaidoukiyoemap/">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" type="image/png" href="icons/apple-touch-icon-180x180.png">
+  <link rel="stylesheet" href="css/vendor/leaflet_v1.9.4/leaflet.css">
+  <link rel="stylesheet" href="css/app/index.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B25L64G43V"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host === '127.0.0.1' || host === 'localhost') {
+      gtag = console.debug;
+    }else{
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B25L64G43V');
+    }
+  </script>
+</head>
+
+<body class="js-body">
+  <div class="my-header">
+    <span class="map-reload"><a class="map-reload-anchor" href="./" target="_self"><img class="map-reload-img" src="images/reload_48px.png" width="18" alt="Reload this page"></a></span>
+    <span class="map-title">街道浮世絵マップ</span>
+    <span class="map-theme-area">
+      <span class="map-theme-note">宿場の位置に浮世絵を表示する地図です</span>
+    </span>
+    <span class="advanced">
+      <input type="button" class="advanced-show-btn js-advanced-show-btn" value="Advanced機能">
+    </span>
+    <span class="about">
+      <a href="html/about.html" target="_blank">About</a>
+    </span>
+  </div>
+
+  <div class="my-body">
+
+    <div class="map-area">
+      <div class="map-left-wrap js-map-left-wrap">
+        <div id="map-left" class="js-map-left"></div>
+      </div>
+    </div>
+
+    <div class="current-zoom-level">
+      <span>Zoom [<span class="js-current-zoom-level"></span>]</span>
+    </div>
+
+
+    <div class="copy-as-url-area">
+      <div>
+        <div class="copy-as-url-note">メモやシェアにご利用ください。<br>現在の場所をURLとしてコピー</div>
+      </div>
+      <div>
+        <div><input type="button" class="copy-as-url-btn js-copy-as-url-btn" value="クリップボードにコピー"></div>
+        <div><label class="copy-as-url-chk-lbl"><input type="checkbox" class="copy-as-url-chk js-copy-as-url-chk" checked>同心円の座標も含める</label></div>
+        <div class="copy-as-url-message js-copy-as-url-message"></div>
+        <div class="copy-as-url-btn-note"></div>
+      </div>
+    </div>
+
+    <div class="latlng-info-area latlng-info-area-left js-latlng-info-area js-latlng-info-area-left">
+      <div class="search-latlng-area">
+        <div>
+          <span>緯度,経度：<input type="text" class="search-latlng-input js-search-latlng-input" value="" placeholder="Search"></span>
+        </div>
+      </div>
+      <div class="show-latlng-area">
+        <div>
+          <div>緯度,経度：<span class="show-latlng-label js-show-latlng-label"></span></div>
+          <div>経度,緯度：<span class="show-lnglat-label js-show-lnglat-label"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="permanent-cache-area js-permanent-cache-area">
+      <div class="permanent-cache-header js-permanent-cache-header">
+        <div class="permanent-cache-header-title">Advanced機能</div>
+        <div class="permanent-cache-header-close"><input type="button" class="permanent-cache-close-btn js-permanent-cache-close-btn" value="閉じる"></div>
+      </div>
+      <div class="permanent-cache-body">
+        <div class="permanent-cache-title">永続的キャッシュ機能</div>
+        <div class="permanent-cache-note">すぐに数百MB～数GBを費やす機能であるため、<br>「<span class="permanent-cache-note-link"><a href="html/readme_cache.html" target="_blank">機能の説明</a></span>」をご確認のうえ、ご利用ください。</div>
+        <div class="permanent-cache-status-display">現在の設定値は <span class="permanent-cache-status-text">[<span class="js-permanent-cache-status">xxx</span>]</span> です。</div>
+        <div class="permanent-cache-each-wrap">
+          <div class="permanent-cache-noapi-area js-permanent-cache-noapi-area">
+            <div class="permanent-cache-btn-note-noapi">（※保存用APIが存在しない環境のため、キャッシュ機能利用不可）</div>
+          </div>
+          <div class="js-permanent-cache-oldedition-btn-area">
+            <input type="button" class="permanent-cache-btn js-permanent-cache-oldedition-btn" value="xxx">
+            <div class="permanent-cache-btn-note">（切替後、画面を自動で再表示します）</div>
+          </div>
+          <div class="js-permanent-cache-full-btn-area">
+            <input type="button" class="permanent-cache-btn js-permanent-cache-full-btn" value="xxx">
+            <div class="permanent-cache-btn-note">（切替後、画面を自動で再表示します）</div>
+          </div>
+          <div class="js-permanent-cache-clear-btn-area">
+            <input type="button" class="permanent-cache-btn js-permanent-cache-clear-btn" value="xxx">
+            <div class="permanent-cache-btn-note">（無効化と同時にキャッシュもすべて削除します）</div>
+          </div>
+        </div>
+        <div class="permanent-cache-estimate-display">
+          <div>目安として（※容量確認APIが利用可能な場合に数値を表示）</div>
+          <div class="permanent-cache-estimate-content">
+            <div>現Origin(<span class="js-permanent-cache-origin"></span>)配下の総合計量</div>
+            <div>・使用量：[<span class="js-permanent-cache-estimate-usage">-</span>]GB</div>
+            <div>・制限値：[<span class="js-permanent-cache-estimate-quota">-</span>]GB</div>
+            <div class="permanent-cache-estimate-content-note">※上記は本Dialog表示時点での値です。<br>　本Dialogを開いたままの状態では自動で値は変わりません。</div>
+            <div><input type="button" class="permanent-cache-estimate-btn js-permanent-cache-estimate-btn" value="使用量 再取得"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="message-area js-message-area">
+    </div>
+
+  </div>
+
+  <script src="js/vendor/leaflet_v1.9.4/leaflet.js"></script>
+  <script src="js/vendor/leaflet.geometryutil.js"></script>
+  <script src="js/vendor/localforage.min.js"></script>
+
+  <script src="js/app/extends/L.Control.Layers.WithClose.js"></script>
+  <script src="js/app/extends/L.GridLayer.OldEditionMap.js"></script>
+  <script src="js/app/extends/L.GridLayer.OldEditionMap.Cache.js"></script>
+  <script src="js/app/extends/L.GridLayer.TileCanvas.js"></script>
+  <script src="js/app/extends/L.GridLayer.TileCanvas.Cache.js"></script>
+  <script src="js/app/extends/L.LayerGroupWithAdding.js"></script>
+
+  <script src="js/app/errors/global_error_handler.js"></script>
+  <script src="js/app/states/Ga4Channel.js"></script>
+  <script src="js/app/states/Ga4Repo.js"></script>
+  <script src="js/app/states/global_const.js"></script>
+  <script src="js/app/states/global_state.js"></script>
+  <script src="js/app/states/global_statex_indexeddb_api_detector.js"></script>
+  <script src="js/app/states/GlobalCacheRepo.js"></script>
+  <script src="js/app/states/MyChannel.js"></script>
+  <script src="js/app/states/OldEditionMapIdCacheRepo.js"></script>
+  <script src="js/app/states/OldEditionMapIdLocalRepo.js"></script>
+  <script src="js/app/states/OldEditionMapIdRepo.js"></script>
+  <script src="js/app/states/PermanentCacheStatusRepo.js"></script>
+  <script src="js/app/states/UrlQueryParamRepo.js"></script>
+  <script src="js/app/states/UrlRepo.js"></script>
+  <script src="js/app/utils/UtilCalcForTile.js"></script>
+  <script src="js/app/utils/UtilCircle.js"></script>
+  <script src="js/app/utils/UtilDeepFreeze.js"></script>
+  <script src="js/app/utils/UtilLeafletTooltip.js"></script>
+  <script src="js/app/utils/UtilMap.js"></script>
+  <script src="js/app/utils/UtilMessage.js"></script>
+  <script src="js/app/utils/UtilMobileDetector.js"></script>
+  <script src="js/app/utils/UtilNumber.js"></script>
+  <script src="js/app/utils/UtilSleep.js"></script>
+  <script src="js/app/configs/config_circle.js"></script>
+  <script src="js/app/configs/config_map.js"></script>
+  <script src="js/app/configs/config_old_edition_map.js"></script>
+  <script src="js/app/managers/MapManager.js"></script>
+  <script src="js/app/managers/PermanentCacheManager.js"></script>
+  <script src="js/app/managers/RoutelineManager.js"></script>
+  <script src="js/app/managers/clickManagers/ClickManager.js"></script>
+  <script src="js/app/managers/clickManagers/ClickManagerCore.js"></script>
+  <script src="js/app/managers/clickManagers/DistanceCircleFactory.js"></script>
+  <script src="js/app/managers/clickManagers/DistanceCircleInfoProvider.js"></script>
+  <script src="js/app/managers/dialogs/AdvancedDialogManager.js"></script>
+  <script src="js/app/managers/dragHandlers/AdvancedDialogDragHandler.js"></script>
+  <script src="js/app/managers/dragHandlers/DialogHelper.js"></script>
+  <script src="js/app/managers/dragHandlers/DragHandlerCore.js"></script>
+  <script src="js/app/managers/recommendMarkerManagers/MarkerRecommend100MeizanManager.js"></script>
+  <script src="js/app/managers/recommendMarkerManagers/MarkerRecommendCoreManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerCoreManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerNakasendoSpotPointManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerNakasendoStationPointManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerNakasendoUkiyoeLargeManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerNakasendoUkiyoeThmbManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerTokaidoSpotPointManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerTokaidoStationPointManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerTokaidoUkiyoeLargeManager.js"></script>
+  <script src="js/app/managers/markerManagers/MarkerTokaidoUkiyoeThmbManager.js"></script>
+  <script src="js/app/managers/pathManagers/LineCoreManager.js"></script>
+  <script src="js/app/managers/pathManagers/PathNakasendoManager.js"></script>
+  <script src="js/app/managers/pathManagers/PathTokaidoManager.js"></script>
+  <script src="js/app/managers/searchManagers/SearchLatLngManager.js"></script>
+  <script src="js/app/managers/searchManagers/SearchLatLngManagerCore.js"></script>
+  <script src="js/app/managers/urlManagers/InitialSetViewManager.js"></script>
+  <script src="js/app/managers/urlManagers/UrlCopyManager.js"></script>
+  <script src="js/app/managers/urlManagers/UrlNormalizer.js"></script>
+  <script src="js/app/managers/urlManagers/UrlValidator.js"></script>
+  <script src="js/app/index.js"></script>
+
+</body>
+</html>
