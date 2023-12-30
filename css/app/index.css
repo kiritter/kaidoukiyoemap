@@ -164,14 +164,23 @@ body {
 
 .click-remarks-area {
   position: absolute;
-  top: 93px;
-  left: 50%;
+  right: 11px;
   z-index: 9901;
   color: #00F;
   background-color: #FFF;
   padding: 1px 5px;
   border-radius: 5px;
   user-select: none;
+}
+@media (min-width: 1025px) {
+  .click-remarks-area {
+    bottom: 126px;
+  }
+}
+@media (max-width: 1024px) {
+  .click-remarks-area {
+    bottom: 29px;
+  }
 }
 .click-remarks-note {
   font-size: 11px;
