@@ -6,6 +6,7 @@ async function initMyApp(global) {
 
     var myChannel = new MyApp.MyChannel();
 
+    MyApp.AdvancedDialogManager.settingPopupBodyHtml();
     var permanentCacheStatusRepo = new MyApp.PermanentCacheStatusRepo(MyApp.globalState);
     var permanentCacheManager = new MyApp.PermanentCacheManager(gaChannel, MyApp.globalState, permanentCacheStatusRepo, global.navigator, global.location);
     permanentCacheManager.init();
