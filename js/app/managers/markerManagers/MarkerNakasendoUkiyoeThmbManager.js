@@ -36,6 +36,7 @@
                 shouldTooltip: true,
                 tooltipNames: {className: 'tooltip-ukiyoe-point', geZoom: 'ukiyoePointTooltipGeZoom', direction: 'ukiyoePointTooltipDirection'},
                 shouldPopup: false,
+                popupNames: null,
                 isNoIconMarker: true,
             };
             var coreManager = new MyApp.MarkerCoreManager(this.gaChannel, this.mapBoth, this.globalState, layerName, callbacks, options, targetTimeRangeType, targetUrl);

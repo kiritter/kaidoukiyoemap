@@ -37,6 +37,7 @@
                 shouldTooltip: false,
                 tooltipNames: null,
                 shouldPopup: true,
+                popupNames: {className: 'popup-ukiyoe'},
                 popupOptionValues: {maxWidth: 830},
                 resourceIdColName: 'ukiyoeMarkerId',
                 isCustomIconMarker: false,

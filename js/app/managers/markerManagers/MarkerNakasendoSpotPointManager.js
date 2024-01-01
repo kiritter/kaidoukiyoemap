@@ -36,6 +36,7 @@
                 shouldTooltip: true,
                 tooltipNames: {className: 'tooltip-spot-point-nakasendo', geZoom: 'spotPointTooltipGeZoom', direction: 'spotPointTooltipDirection'},
                 shouldPopup: false,
+                popupNames: null,
             };
             var coreManager = new MyApp.MarkerCoreManager(this.gaChannel, this.mapBoth, this.globalState, layerName, callbacks, options, targetTimeRangeType, targetUrl);
             return coreManager;

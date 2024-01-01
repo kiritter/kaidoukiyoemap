@@ -156,7 +156,7 @@
                     }
 
                     if (self.options.shouldPopup) {
-                        var popupOptions = self._createPopupOption(feature.properties, self.options.popupOptionValues);
+                        var popupOptions = self._createPopupOption(feature.properties, self.options.popupNames, self.options.popupOptionValues);
                         layer.bindPopup(popupFunc, popupOptions);
                     }
 
@@ -293,8 +293,9 @@
             };
         }
 
-        _createPopupOption(properties, popupOptionValues) {
+        _createPopupOption(properties, popupNames, popupOptionValues) {
             return {
+                className: popupNames.className,
                 maxWidth: (popupOptionValues && popupOptionValues.maxWidth) ? popupOptionValues.maxWidth : 380,
             };
         }
