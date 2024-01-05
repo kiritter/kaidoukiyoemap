@@ -28,6 +28,10 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
         if (checkbox) {
             checkbox.setAttribute('data-layer-name', obj.layer.options.myLayerName);
 
+            if (obj.layer.options.overlayMenuCssClassName) {
+                label.classList.add(obj.layer.options.overlayMenuCssClassName);
+            }
+
             if (obj.layer.options.blockDescription) {
                 const desc = document.createElement('div');
                 desc.innerText = obj.layer.options.blockDescription;
