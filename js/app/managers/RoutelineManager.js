@@ -30,17 +30,17 @@
         async _initAll() {
             var promiseList = [];
 
-            promiseList.push(this.pathTokaidoManager.init());
-            promiseList.push(this.tokaidoStationPointManager.init());
-            promiseList.push(this.tokaidoSpotPointManager.init());
-            promiseList.push(this.tokaidoUkiyoeThmbManager.init());
-            promiseList.push(this.tokaidoUkiyoeLargeManager.init());
-
             promiseList.push(this.pathNakasendoManager.init());
             promiseList.push(this.nakasendoStationPointManager.init());
             promiseList.push(this.nakasendoSpotPointManager.init());
             promiseList.push(this.nakasendoUkiyoeThmbManager.init());
             promiseList.push(this.nakasendoUkiyoeLargeManager.init());
+
+            promiseList.push(this.pathTokaidoManager.init());
+            promiseList.push(this.tokaidoStationPointManager.init());
+            promiseList.push(this.tokaidoSpotPointManager.init());
+            promiseList.push(this.tokaidoUkiyoeThmbManager.init());
+            promiseList.push(this.tokaidoUkiyoeLargeManager.init());
 
             await Promise.all(promiseList);
         }
