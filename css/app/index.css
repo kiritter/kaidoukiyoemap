@@ -122,6 +122,11 @@ body {
   right: 50%;
 }
 
+@media (max-width: 750px) {
+  #map-right .leaflet-control-container .control-layers-custom-button-collapse-wraper {
+    text-align: right;
+  }
+}
 .control-layers-custom-button-collapse {
   width: 100px;
   font-size: 12px;

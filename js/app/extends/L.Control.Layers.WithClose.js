@@ -3,7 +3,8 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
     onAdd: function(map) {
         var container = L.Control.Layers.prototype.onAdd.call(this, map);
         var targetEl = container.querySelector('.leaflet-control-layers-list');
-        this._customButton = L.DomUtil.create('button', 'control-layers-custom-button-collapse', targetEl);
+        var customButtonWraper = L.DomUtil.create('div', 'control-layers-custom-button-collapse-wraper', targetEl);
+        this._customButton = L.DomUtil.create('button', 'control-layers-custom-button-collapse', customButtonWraper);
         this._customButton.innerText = '閉じる';
         var self = this;
         L.DomEvent.on(this._customButton, 'click', function(e){
