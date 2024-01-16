@@ -101,6 +101,21 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
 
         return label;
     },
+
+    expand: function () {
+        L.DomUtil.addClass(this._container, 'leaflet-control-layers-expanded');
+        this._section.style.height = null;
+        var myZoomButtonLabelHeight = 50;
+        var acceptableHeight = this._map.getSize().y - (this._container.offsetTop + 50 + myZoomButtonLabelHeight);
+        if (acceptableHeight < this._section.clientHeight) {
+            L.DomUtil.addClass(this._section, 'leaflet-control-layers-scrollbar');
+            this._section.style.height = acceptableHeight + 'px';
+        } else {
+            L.DomUtil.removeClass(this._section, 'leaflet-control-layers-scrollbar');
+        }
+        this._checkDisabledLayers();
+        return this;
+    },
 });
 
 L.control.layers.withClose = function(baselayers, overlays, options) {
