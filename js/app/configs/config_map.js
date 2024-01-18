@@ -130,7 +130,7 @@
             },
         },
         'route_tokaido_ukiyoe_large': {
-            caption: '（同 東海道）(Markerクリックで大きいサイズ表示)',
+            caption: '浮世絵：東海道 (Markerクリックで大きいサイズ表示)',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
@@ -161,7 +161,7 @@
             },
         },
         'route_nakasendo_ukiyoe_large': {
-            caption: '（同 木曽海道）(Markerクリックで大きいサイズ表示)',
+            caption: '浮世絵：木曽海道 (Markerクリックで大きいサイズ表示)',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
