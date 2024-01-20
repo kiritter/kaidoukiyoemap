@@ -53,6 +53,8 @@
                 position: 'bottomleft'
             }).addTo(map);
 
+            this.settingSingleChoiceCheckbox(map, mapId);
+
             return map;
         }
 
@@ -159,6 +161,41 @@
             var radioCheckElList = document.querySelectorAll('.leaflet-control-layers .leaflet-control-layers-list .leaflet-control-layers-overlays .leaflet-control-layers-selector');
             radioCheckElList.forEach(function(el) {
                 el.disabled = false;
+            });
+        }
+
+        settingSingleChoiceCheckbox(map, mapId) {
+            map.on('overlayadd', function(layersControlEvent) {
+                var layer = layersControlEvent.layer;
+
+                if (layer) {
+                }else{
+                    return;
+                }
+
+                var isSingleChoiceLayer = layer.options.isSingleChoiceLayer;
+                if (isSingleChoiceLayer) {
+                }else{
+                    return;
+                }
+
+                var currentLayerName = layer.options.myLayerName;
+                var selector = `#${mapId} .leaflet-control-layers .leaflet-control-layers-list .leaflet-control-layers-overlays .single-choice-layer .leaflet-control-layers-selector`;
+                var checkboxElList = document.querySelectorAll(selector);
+                var len = checkboxElList.length;
+                for (var i = 0; i < len; i++) {
+                    var checkboxEl = checkboxElList[i];
+                    if (checkboxEl.checked) {
+                        var layerName = checkboxEl.getAttribute('data-layer-name');
+                        if (layerName !== currentLayerName) {
+                            (function(checkboxEl) {
+                                setTimeout(function() {
+                                    checkboxEl.click();
+                                }, 10);
+                            }(checkboxEl));
+                        }
+                    }
+                }
             });
         }
 
