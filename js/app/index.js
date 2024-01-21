@@ -18,6 +18,9 @@ async function initMyApp(global) {
     var routelineManager = new MyApp.RoutelineManager(gaChannel, mapBoth, MyApp.globalState, myChannel);
     routelineManager.init();
 
+    var prefBorderManager = new MyApp.PrefectureBorderManager(mapBoth, MyApp.globalState, myChannel);
+    prefBorderManager.init();
+
     var markerRecommend100MeizanManager = new MyApp.MarkerRecommend100MeizanManager(gaChannel, mapBoth);
     markerRecommend100MeizanManager.init();
 

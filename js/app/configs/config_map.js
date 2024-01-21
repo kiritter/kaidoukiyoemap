@@ -18,6 +18,7 @@
         {name: 'ort_old10', selected: false},
         {name: 'latest', selected: false},
         {name: 'hillshade', selected: true},
+        {name: 'pref_border', selected: false},
         {name: `route_nakasendo`, selected: true},
         {name: `route_nakasendo_ukiyoe_thmb`, selected: true},
         {name: `route_nakasendo_ukiyoe_large`, selected: true},
@@ -72,7 +73,6 @@
                 myLayerName: 'latest',
                 myCacheName: 'latest',
                 myCacheRepo: MyApp.globalCacheRepo,
-                addSeparatorToBottom: true,
             },
         },
         'hillshade': {
@@ -88,9 +88,9 @@
                 myLayerName: 'hillshade',
                 myCacheName: 'hillshade',
                 myCacheRepo: MyApp.globalCacheRepo,
-                blockDescription: '陰影起伏図を重ねて表示できます',
+                addSeparatorToBeforebegin: true,
+                blockDescription: '重ねて表示できます',
                 blockDescriptionCssClassName: 'block-description',
-                addSeparatorToBottom: true,
             },
         },
 
@@ -121,6 +121,7 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: `route_tokaido`,
+                addSeparatorToBeforebegin: true,
             },
         },
         'route_tokaido_ukiyoe_thmb': {
@@ -139,7 +140,6 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: `route_tokaido_ukiyoe_large`,
-                addSeparatorToBottom: true,
             },
         },
 
@@ -150,6 +150,7 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: `route_nakasendo`,
+                addSeparatorToBeforebegin: true,
                 blockDescription: '宿場名や浮世絵を表示します',
                 blockDescriptionCssClassName: 'block-description',
             },
@@ -170,7 +171,6 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: `route_nakasendo_ukiyoe_large`,
-                addSeparatorToBottom: true,
             },
         },
         'recommend_100meizan': {
@@ -180,6 +180,7 @@
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: 'recommend_100meizan',
+                addSeparatorToBeforebegin: true,
                 isLastElement: true,
                 lastElementLinkInfoList: [
                     {
@@ -190,11 +191,20 @@
                     },
                     {
                         sourceSummaryUrl: '../#product-map',
-                        sourceSummaryText: '当Webサイトの兄弟地図サイトを見る',
+                        sourceSummaryText: '当Webサイトの🗾兄弟地図サイトを見る',
                         sourceSummaryNote: '',
                         sourceSummaryCssClassName: 'source-summary-link',
                     },
                 ],
+            },
+        },
+        'pref_border': {
+            caption: '都道府県境 (目安, 2014年時点)',
+            tileType: MyApp.configMap.TileType.Empty,
+            options: {
+                minZoom: 5,
+                maxZoom: 18,
+                myLayerName: 'pref_border',
             },
         },
 

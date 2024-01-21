@@ -3,6 +3,9 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
     onAdd: function(map) {
         var container = L.Control.Layers.prototype.onAdd.call(this, map);
         var targetEl = container.querySelector('.leaflet-control-layers-list');
+        const separator = document.createElement('div');
+        separator.classList.add('leaflet-control-layers-separator');
+        targetEl.insertAdjacentElement('beforeend', separator);
         var customButtonWraper = L.DomUtil.create('div', 'control-layers-custom-button-collapse-wraper', targetEl);
         this._customButton = L.DomUtil.create('button', 'control-layers-custom-button-collapse', customButtonWraper);
         this._customButton.innerText = '閉じる';
@@ -28,6 +31,12 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
         var checkbox = label.querySelector('input[type="checkbox"]');
         if (checkbox) {
             checkbox.setAttribute('data-layer-name', obj.layer.options.myLayerName);
+
+            if (obj.layer.options.addSeparatorToBeforebegin) {
+                const separator = document.createElement('div');
+                separator.classList.add('leaflet-control-layers-separator');
+                label.insertAdjacentElement('beforebegin', separator);
+            }
 
             if (obj.layer.options.isSingleChoiceLayer) {
                 label.classList.add('single-choice-layer');
@@ -63,12 +72,6 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
                 checkbox.parentElement.appendChild(wrap);
             }
 
-            if (obj.layer.options.addSeparatorToBottom) {
-                const separator = document.createElement('div');
-                separator.classList.add('leaflet-control-layers-separator');
-                label.insertAdjacentElement('afterend', separator);
-            }
-
             if (obj.layer.options.isLastElement) {
                 const separator1 = document.createElement('div');
                 separator1.classList.add('leaflet-control-layers-separator');
@@ -95,10 +98,6 @@ L.Control.Layers.WithClose = L.Control.Layers.extend({
                     insertTargetEl.insertAdjacentElement('afterend', wrap);
                     insertTargetEl = wrap;
                 }
-
-                const separator2 = document.createElement('div');
-                separator2.classList.add('leaflet-control-layers-separator');
-                insertTargetEl.insertAdjacentElement('afterend', separator2);
             }
         }
 

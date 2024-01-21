@@ -25,7 +25,7 @@
             this.settingZoomEvent();
 
             this.geojson = await this.findPlaceData();
-            var markersGroup = this.creategMarkersGroup(this.geojson);
+            var markersGroup = this.createMarkersGroup(this.geojson);
             this.layerGroupLeft.addLayer(markersGroup);
         }
 
@@ -119,7 +119,7 @@
             return res.json();
         }
 
-        creategMarkersGroup(geoJson) {
+        createMarkersGroup(geoJson) {
             var tooltipFunc = this._createTooltipContentFunc();
             var popupFunc = this._createPopupContentFunc();
 
