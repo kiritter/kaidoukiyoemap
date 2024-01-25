@@ -135,8 +135,9 @@
                 },
                 onEachFeature: (feature, layer) => {
 
-                    if (feature.properties.zIndexOffset) {
-                        layer.setZIndexOffset(feature.properties.zIndexOffset);
+                    if (self.options.popupNames && self.options.popupNames.zIndexOffset && feature.properties[self.options.popupNames.zIndexOffset]) {
+                        var zIndexOffset = feature.properties[self.options.popupNames.zIndexOffset];
+                        layer.setZIndexOffset(zIndexOffset);
                     }
 
                     if (self.options.shouldTooltip) {
