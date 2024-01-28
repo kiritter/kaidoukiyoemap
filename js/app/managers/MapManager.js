@@ -11,6 +11,7 @@
         init() {
             var mapLeft = this.createMapLeft('map-left');
             this._changeLeafletLinkWithTargetBlank(mapLeft);
+            this._changeLayerControlCaption(mapLeft);
             return {mapLeft: mapLeft};
         }
 
@@ -19,6 +20,17 @@
             var anchorElList = containerEl.querySelectorAll('.leaflet-control-container .leaflet-control-attribution a');
             var leafletAnchor = anchorElList[0];
             leafletAnchor.setAttribute('target', '_blank');
+        }
+
+        _changeLayerControlCaption(map) {
+            var containerEl = map.getContainer();
+            var labelElList = containerEl.querySelectorAll('.leaflet-control-container .leaflet-control-layers .leaflet-control-layers-list .overlay-menu-replace-target');
+            labelElList.forEach(function(labelEl) {
+                var captionSpanEl = labelEl.querySelector('span span');
+                var caption = captionSpanEl.innerText;
+                var replaced = caption.replace(/\[replace\].*\[\/replace\]/, '同');
+                captionSpanEl.innerText = replaced;
+            });
         }
 
         createMapLeft(mapId) {

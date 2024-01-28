@@ -95,7 +95,7 @@
         },
 
         'old_edition': {
-            caption: '旧版地図(日本版MapWarper[五万分一地形圖]) (Zoom:10-15)',
+            caption: '旧版地図(五万分一地形圖) (Zoom:10-15)',
             tileType: MyApp.configMap.TileType.OldEdition,
             options: {
                 myTileUrl: 'https://mapwarper.h-gis.jp/maps/tile/{area_id}/{z}/{x}/{y}.png',
@@ -134,12 +134,13 @@
             },
         },
         'route_tokaido_ukiyoe_large': {
-            caption: '浮世絵：東海道 (Markerクリックで大きいサイズ表示)',
+            caption: '浮世絵：[replace]東海道[/replace] (Markerクリックで大きいサイズ表示)',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: `route_tokaido_ukiyoe_large`,
+                overlayMenuCssClassName: 'overlay-menu-replace-target',
             },
         },
 
@@ -165,12 +166,13 @@
             },
         },
         'route_nakasendo_ukiyoe_large': {
-            caption: '浮世絵：木曽海道 (Markerクリックで大きいサイズ表示)',
+            caption: '浮世絵：[replace]木曽街道[/replace] (Markerクリックで大きいサイズ表示)',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: `route_nakasendo_ukiyoe_large`,
+                overlayMenuCssClassName: 'overlay-menu-replace-target',
             },
         },
         'recommend_100meizan': {
@@ -199,13 +201,13 @@
             },
         },
         'pref_border': {
-            caption: '都道府県境 (※3.7MB, 目安精度, 2014年時点)',
+            caption: '都道府県境 (細部簡略/2014年時点)',
             tileType: MyApp.configMap.TileType.Empty,
             options: {
                 minZoom: 5,
                 maxZoom: 18,
                 myLayerName: 'pref_border',
-                blockDescription: '　↓ 初回選択時にデータ取得＆描画します',
+                blockDescription: '↓ 初回選択時にデータ取得＆描画(転送量1.2MB)',
                 blockDescriptionCssClassName: 'block-description-pref-border',
             },
         },
